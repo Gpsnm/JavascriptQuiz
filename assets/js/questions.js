@@ -1,4 +1,4 @@
-let questions = [
+let questionsArr = [
     {
         questions:"Inside which HTML element do we put the JavaScript?",
         choice:["1.<Javascript>","2.<js>","3.<scripting>","4.<script>"],
