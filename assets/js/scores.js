@@ -1,1 +1,5 @@
-let highScoreOl = document.querySelector("#highscores");
+
+
+function showScore(){
+
+}
