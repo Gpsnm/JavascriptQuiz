@@ -89,4 +89,4 @@ function HighScorer() {
     alert("blanks");
   }
 }
-submitBtn.addEventListener("click",HighScorer)
+submitBtn.addEventListener("click",HighScorer);
