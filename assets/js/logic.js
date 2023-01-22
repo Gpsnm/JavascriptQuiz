@@ -5,6 +5,8 @@ let timeEl = document.querySelector("#time");
 let questionTitle = document.querySelector("#question-title");
 let choices = document.querySelector("#choices");
 let feedBack = document.querySelector("#feedback");
+let endScreen = document.querySelector("#end-screen");
+let finalScore = document.querySelector("final-score");
 let choicesBtn;
 let timerCount = 120;
 let timer;
@@ -53,12 +55,22 @@ setTimeout(() => {
   feedBack.setAttribute("class", "hide");
 }, 1000);
 indexNumber++
+if (indexNumber === questionsArr.length){
+  endQuiz()
+} else {
 getQuestions();
+}
 }
 
 
 
+function endQuiz(){
+  clearInterval(timer);
+  endScreen.classList.remove("hide");
+  finalScore.textContent = timerCount;
+  questionEl.classList.add("hide");
 
+}
 
 
 
