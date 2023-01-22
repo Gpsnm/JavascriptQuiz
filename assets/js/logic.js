@@ -6,33 +6,38 @@ let questionTitle = document.querySelector("#question-title");
 let choices = document.querySelector("#choices");
 let timerCount = 120;
 let timer;
+let correctAnswer = questionsArr[0].answer;
 
 
 
 // function that changes classes on start screen and question and also starts a timer.
-// function startQuiz() {
-//   startScreen.setAttribute("class", "hide");
-//   questionEl.removeAttribute("class");
-//   timer = setInterval(() => {
-//     timeEl.textContent = timerCount;
-//     timerCount--;
-//   }, 1000);
-//   getQuestions()
-// }
+function startQuiz() {
+  startScreen.setAttribute("class", "hide");
+  questionEl.removeAttribute("class");
+  timer = setInterval(() => {
+    timeEl.textContent = timerCount;
+    timerCount--;
+  }, 1000);
+  getQuestions();
+  selectAnswer();
+}
+startBtn.addEventListener("click", startQuiz);
+// function to get questions and answers.
+function getQuestions() {
+  questionTitle.textContent = questionsArr[0].questions;
+}
 
-// startBtn.addEventListener("click", startQuiz);
+function selectAnswer(){
+    for (let i = 0; i < 4; i++) {
+    let choicesBtn = document.createElement("button");
+    choices.appendChild(choicesBtn);
+    choicesBtn.setAttribute("class", "choices");
+    choicesBtn.textContent = questionsArr[0].choice[i];
+  }
+  }
 
-
-function getQuestions(){
-questionTitle.textContent = (questionsArr[0].questions);
-
-for (let i = 0; i < 4; i++){
-let choicesBtn = document.createElement("button");
-choices.appendChild(choicesBtn);
-choicesBtn.setAttribute("class", "choices");
-choicesBtn.textContent = questionsArr[0].choice[i];
-};
-};
-
-
-getQuestions();
+  let answerButton = document.querySelector(".choices");
+  answerButton.value
+  answerButton.addEventListener("click", function(event){
+    console.log(event.value);
+  })
