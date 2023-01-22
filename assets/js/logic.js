@@ -6,10 +6,10 @@ let questionTitle = document.querySelector("#question-title");
 let choices = document.querySelector("#choices");
 let feedBack = document.querySelector("#feedback");
 let endScreen = document.querySelector("#end-screen");
-let finalScore = document.querySelector("final-score");
+let finalScore = document.querySelector("#final-score");
 let playerEl = document.querySelector("#initials");
 let choicesBtn;
-let timerCount = 60;
+let timerCount = 40;
 let timer;
 let indexNumber = 0;
 
@@ -46,7 +46,7 @@ function getQuestions() {
 
 function questions() {
   if (this.textContent !== questionsArr[indexNumber].answer) {
-    timerCount - 10;
+    timerCount -= 10;
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
     // play sound
