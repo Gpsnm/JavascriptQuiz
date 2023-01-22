@@ -6,7 +6,7 @@ let questionsArr = [
     },
     {
         questions:"The condition in an if/else statement is enclosed within _____?",
-        choice:["1.quotes","2.curly brackets","3.Parentheses ","4.Square brackets"],
+        choice:["1.quotes","2.curly brackets","3.Parentheses","4.Square brackets"],
         answer:"3.Parentheses",
     },
     {
