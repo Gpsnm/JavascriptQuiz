@@ -4,9 +4,11 @@ let startBtn = document.querySelector("#start");
 let timeEl = document.querySelector("#time");
 let questionTitle = document.querySelector("#question-title");
 let choices = document.querySelector("#choices");
+let feedBack = document.querySelector("#feedback");
+let choicesBtn;
 let timerCount = 120;
 let timer;
-let correctAnswer = questionsArr[0].answer;
+let indexNumber = 0;
 
 // function that changes classes on start screen and question and also starts a timer.
 function startQuiz() {
@@ -17,26 +19,48 @@ function startQuiz() {
     timerCount--;
   }, 1000);
   getQuestions();
-  selectAnswer();
 }
+// used to start quiz and call start quiz function
 startBtn.addEventListener("click", startQuiz);
+
 // function to get questions and answers.
 function getQuestions() {
-  questionTitle.textContent = questionsArr[0].questions;
-}
-
-function selectAnswer() {
+  questionTitle.textContent = questionsArr[indexNumber].questions;
+  choices.innerHTML = " ";
   for (let i = 0; i < 4; i++) {
-    let choicesBtn = document.createElement("button");
+    choicesBtn = document.createElement("button");
     choices.appendChild(choicesBtn);
     choicesBtn.setAttribute("class", "choices");
-    choicesBtn.textContent = questionsArr[0].choice[i];
+    answerOptions = questionsArr[indexNumber].choice[i];
+    choicesBtn.textContent = answerOptions;
+    choicesBtn.addEventListener("click", questions);
   }
-  let answerButton = document.querySelector(".choices");
-  answerButton.addEventListener("click", function (event) {
-    let selectedButton = event.target.textContent;
-    if (selectedButton == questionsArr[0].answer) {
-      console.log("correct");
-    } else timerCount = timerCount - 10;
-  });
 }
+
+
+function questions(){
+if (this.textContent !== questionsArr[indexNumber].answer){
+timerCount -= 10;
+timeEl.textContent = timerCount;
+feedBack.textContent = "Wrong";
+// play sound
+} else {
+  feedBack.textContent = "Correct";
+}
+feedBack.removeAttribute("class", "hide");
+
+setTimeout(() => {
+  feedBack.setAttribute("class", "hide");
+}, 1000);
+indexNumber++
+getQuestions();
+}
+
+
+
+
+
+
+
+
+
