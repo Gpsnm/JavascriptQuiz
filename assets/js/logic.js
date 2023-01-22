@@ -7,8 +7,9 @@ let choices = document.querySelector("#choices");
 let feedBack = document.querySelector("#feedback");
 let endScreen = document.querySelector("#end-screen");
 let finalScore = document.querySelector("final-score");
+let playerEl = document.querySelector("#initials");
 let choicesBtn;
-let timerCount = 120;
+let timerCount = 60;
 let timer;
 let indexNumber = 0;
 
@@ -19,6 +20,10 @@ function startQuiz() {
   timer = setInterval(() => {
     timeEl.textContent = timerCount;
     timerCount--;
+    if (timerCount <= 0){
+      timerCount = 0;
+      endQuiz();
+    }
   }, 1000);
   getQuestions();
 }
@@ -73,6 +78,17 @@ function endQuiz(){
 }
 
 
+function HighScorer (){
+  playerInitial = playerEl.value.trim()
+  if (playerInitial){
+  let highScore = JSON.parse(localStorage.getItem ("highsScores")) || [];
+  let newScore = {
+score:timerCount,
+initials:playerInitial,
+  }
+  highScore.push(newScore);
+  }
 
+}
 
 
