@@ -20,7 +20,7 @@ function startQuiz() {
   timer = setInterval(() => {
     timeEl.textContent = timerCount;
     timerCount--;
-    if (timerCount <= 0){
+    if (timerCount <= 0) {
       timerCount = 0;
       endQuiz();
     }
@@ -44,51 +44,44 @@ function getQuestions() {
   }
 }
 
+function questions() {
+  if (this.textContent !== questionsArr[indexNumber].answer) {
+    timerCount - 10;
+    timeEl.textContent = timerCount;
+    feedBack.textContent = "Wrong";
+    // play sound
+  } else {
+    feedBack.textContent = "Correct";
+  }
+  feedBack.removeAttribute("class", "hide");
 
-function questions(){
-if (this.textContent !== questionsArr[indexNumber].answer){
-timerCount -= 10;
-timeEl.textContent = timerCount;
-feedBack.textContent = "Wrong";
-// play sound
-} else {
-  feedBack.textContent = "Correct";
+  setTimeout(() => {
+    feedBack.setAttribute("class", "hide");
+  }, 1000);
+  indexNumber++;
+  if (indexNumber === questionsArr.length) {
+    endQuiz();
+  } else {
+    getQuestions();
+  }
 }
-feedBack.removeAttribute("class", "hide");
 
-setTimeout(() => {
-  feedBack.setAttribute("class", "hide");
-}, 1000);
-indexNumber++
-if (indexNumber === questionsArr.length){
-  endQuiz()
-} else {
-getQuestions();
-}
-}
-
-
-
-function endQuiz(){
+function endQuiz() {
   clearInterval(timer);
   endScreen.classList.remove("hide");
   finalScore.textContent = timerCount;
   questionEl.classList.add("hide");
-
 }
 
-
-function HighScorer (){
-  playerInitial = playerEl.value.trim()
-  if (playerInitial){
-  let highScore = JSON.parse(localStorage.getItem ("highsScores")) || [];
-  let newScore = {
-score:timerCount,
-initials:playerInitial,
+function HighScorer() {
+  playerInitial = playerEl.value.trim();
+  if (playerInitial) {
+    let highScore = JSON.parse(localStorage.getItem("highsScores")) || [];
+    let newScore = {
+      score: timerCount,
+      initials: playerInitial,
+    };
+    highScore.push(newScore);
+    localStorage.setItem("highScore", JSON.stringify(highScore));
   }
-  highScore.push(newScore);
-  }
-
 }
-
-
