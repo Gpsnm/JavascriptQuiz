@@ -1,0 +1,1 @@
+let highScoreOl = document.querySelector("#highscores");

@@ -8,6 +8,7 @@ let feedBack = document.querySelector("#feedback");
 let endScreen = document.querySelector("#end-screen");
 let finalScore = document.querySelector("#final-score");
 let playerEl = document.querySelector("#initials");
+let submitBtn = document.querySelector("#submit");
 let choicesBtn;
 let timerCount = 40;
 let timer;
@@ -83,5 +84,9 @@ function HighScorer() {
     };
     highScore.push(newScore);
     localStorage.setItem("highScore", JSON.stringify(highScore));
+    window.location.href = "/highscores.html"
+  }else{
+    alert("blanks");
   }
 }
+submitBtn.addEventListener("click",HighScorer)
