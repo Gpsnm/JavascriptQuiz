@@ -77,13 +77,13 @@ function endQuiz() {
 function HighScorer() {
   playerInitial = playerEl.value.trim();
   if (playerInitial) {
-    let highScore = JSON.parse(localStorage.getItem("highScores")) || [];
+    let highScore = JSON.parse(localStorage.getItem("highscores")) || [];
     let newScore = {
       score: timerCount,
       initials: playerInitial,
     };
     highScore.push(newScore);
-    localStorage.setItem("highScores", JSON.stringify(highScore));
+    localStorage.setItem("highscores", JSON.stringify(highScore));
     window.location.href = "highscores.html"
   }else{
     alert("blanks");

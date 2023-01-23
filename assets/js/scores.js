@@ -1,11 +1,10 @@
 
 function showScore(){
-    let scores = JSON.parse(localStorage.getItem("highScores")) || [];
-    console.log("hi");
-    scores.array.forEach(function(){
+    let scores = JSON.parse(localStorage.getItem("highscores")) || [];
+    scores.forEach(function(newScore){
         let liElement = document.createElement("li");
         let highScoreOl = document.querySelector("#highscores");
-        liElement.textContent = Score.initials + " -- " + newScore.score;
+        liElement.textContent = newScore.initials + " -- " + newScore.score;
         highScoreOl.appendChild(liElement);
         
         
@@ -13,5 +12,5 @@ function showScore(){
 
 }
 
-showScore;
+showScore();
 
