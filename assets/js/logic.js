@@ -47,7 +47,7 @@ function getQuestions() {
 
 function questions() {
   if (this.textContent !== questionsArr[indexNumber].answer) {
-    timerCount -= 10;
+    timerCount -=10 ;
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
     // play sound

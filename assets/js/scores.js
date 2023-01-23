@@ -20,7 +20,5 @@ showScore();
 function clearScores(){
 window.localStorage.removeItem("highscores");
 highScoreOl.classList.add('hide');
-
 }
-
 clearScore.addEventListener("click", clearScores);
