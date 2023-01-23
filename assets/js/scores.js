@@ -1,9 +1,11 @@
-
+let clearScore = document.querySelector("#clear");
+let liElement;
+let highScoreOl;
 function showScore(){
     let scores = JSON.parse(localStorage.getItem("highscores")) || [];
     scores.forEach(function(newScore){
-        let liElement = document.createElement("li");
-        let highScoreOl = document.querySelector("#highscores");
+        liElement = document.createElement("li");
+        highScoreOl = document.querySelector("#highscores");
         liElement.textContent = newScore.initials + " -- " + newScore.score;
         highScoreOl.appendChild(liElement);
         
@@ -13,6 +15,12 @@ function showScore(){
 }
 showScore();
 
+
+
 function clearScores(){
-    
+window.localStorage.removeItem("highscores");
+highScoreOl.classList.add('hide');
+
 }
+
+clearScore.addEventListener("click", clearScores);
