@@ -1,3 +1,5 @@
+// Global Variables
+
 let startScreen = document.querySelector("#start-screen");
 let questionEl = document.querySelector("#questions");
 let startBtn = document.querySelector("#start");
@@ -14,8 +16,7 @@ let timerCount = 60;
 let timer;
 let indexNumber = 0;
 let incorrectAudio = new Audio("./assets/sfx/incorrect.wav");
-let correctAudio = new Audio ("./assets/sfx/correct.wav");
-
+let correctAudio = new Audio("./assets/sfx/correct.wav");
 
 // function that changes classes on start screen and question and also starts a timer.
 function startQuiz() {
@@ -34,6 +35,7 @@ startBtn.addEventListener("click", startQuiz);
 function getQuestions() {
   questionTitle.textContent = questionsArr[indexNumber].questions;
   choices.innerHTML = " ";
+  // loop to create 4 button elements and append them to the choices div
   for (let i = 0; i < 4; i++) {
     choicesBtn = document.createElement("button");
     choices.appendChild(choicesBtn);
@@ -44,18 +46,20 @@ function getQuestions() {
   }
 }
 
+// used to determine if answer is correct or incorrect and what to do based on result.
 function questions() {
   if (this.textContent !== questionsArr[indexNumber].answer) {
     timerCount -= 10;
     if (timerCount < 0) {
       timerCount = 0;
     }
+    // play sound
     incorrectAudio.play();
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
-    // play sound
   } else {
     feedBack.textContent = "Correct";
+    // play sound
     correctAudio.play();
   }
   feedBack.removeAttribute("class", "hide");
@@ -71,6 +75,7 @@ function questions() {
   }
 }
 
+// ends quiz prints total score = to time left on timer
 function endQuiz() {
   clearInterval(timer);
   endScreen.classList.remove("hide");
@@ -78,6 +83,7 @@ function endQuiz() {
   questionEl.classList.add("hide");
 }
 
+// created a key in local storage that is pushed into an object
 function HighScorer() {
   playerInitial = playerEl.value.trim();
   if (playerInitial) {
@@ -93,4 +99,5 @@ function HighScorer() {
     alert("blanks");
   }
 }
+// added event listener to run highscorer function on click of submit button
 submitBtn.addEventListener("click", HighScorer);
