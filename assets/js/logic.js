@@ -10,7 +10,7 @@ let finalScore = document.querySelector("#final-score");
 let playerEl = document.querySelector("#initials");
 let submitBtn = document.querySelector("#submit");
 let choicesBtn;
-let timerCount = 40;
+let timerCount = 60;
 let timer;
 let indexNumber = 0;
 
@@ -21,10 +21,10 @@ function startQuiz() {
   timer = setInterval(() => {
     timeEl.textContent = timerCount;
     timerCount--;
-    if (timerCount <= 0) {
-      timerCount = 0;
-      endQuiz();
-    }
+    // if (timerCount <= 0) {
+    //   timerCount = 0;
+    //   endQuiz();
+    // }
   }, 1000);
   getQuestions();
 }
@@ -47,7 +47,10 @@ function getQuestions() {
 
 function questions() {
   if (this.textContent !== questionsArr[indexNumber].answer) {
-    timerCount -=10 ;
+    timerCount -= 10 ;
+    if(timerCount < 0){
+      timerCount = 0
+    }
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
     // play sound
@@ -60,7 +63,7 @@ function questions() {
     feedBack.setAttribute("class", "hide");
   }, 1000);
   indexNumber++;
-  if (indexNumber === questionsArr.length) {
+  if (indexNumber === questionsArr.length || timerCount <= 0) {
     endQuiz();
   } else {
     getQuestions();
