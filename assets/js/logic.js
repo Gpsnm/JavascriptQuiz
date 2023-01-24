@@ -13,10 +13,9 @@ let choicesBtn;
 let timerCount = 60;
 let timer;
 let indexNumber = 0;
-let wrongAudio = new Audio("./assets/sfx/incorrect.wav");
-let CorrectAudio = new Audio ("./assets/sfx/correct.wav");
+let incorrectAudio = new Audio("./assets/sfx/incorrect.wav");
+let correctAudio = new Audio ("./assets/sfx/correct.wav");
 
-CorrectAudio.play();
 
 // function that changes classes on start screen and question and also starts a timer.
 function startQuiz() {
@@ -51,11 +50,13 @@ function questions() {
     if (timerCount < 0) {
       timerCount = 0;
     }
+    incorrectAudio.play();
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
     // play sound
   } else {
     feedBack.textContent = "Correct";
+    correctAudio.play();
   }
   feedBack.removeAttribute("class", "hide");
 
