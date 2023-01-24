@@ -43,6 +43,6 @@ let questionsArr = [
   {
     questions: "Which event occurs when the user clicks on an HTML element?",
     choice: ["1.onmouseover", "2.onclick", "3.onchange", "4.onmouseclick"],
-    answer: ["2.onclick"],
+    answer: "2.onclick",
   },
 ];
