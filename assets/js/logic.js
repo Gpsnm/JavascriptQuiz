@@ -13,6 +13,10 @@ let choicesBtn;
 let timerCount = 60;
 let timer;
 let indexNumber = 0;
+let wrongAudio = new Audio("./assets/sfx/incorrect.wav");
+let CorrectAudio = new Audio ("./assets/sfx/correct.wav");
+
+CorrectAudio.play();
 
 // function that changes classes on start screen and question and also starts a timer.
 function startQuiz() {
@@ -21,10 +25,6 @@ function startQuiz() {
   timer = setInterval(() => {
     timeEl.textContent = timerCount;
     timerCount--;
-    // if (timerCount <= 0) {
-    //   timerCount = 0;
-    //   endQuiz();
-    // }
   }, 1000);
   getQuestions();
 }
@@ -47,9 +47,9 @@ function getQuestions() {
 
 function questions() {
   if (this.textContent !== questionsArr[indexNumber].answer) {
-    timerCount -= 10 ;
-    if(timerCount < 0){
-      timerCount = 0
+    timerCount -= 10;
+    if (timerCount < 0) {
+      timerCount = 0;
     }
     timeEl.textContent = timerCount;
     feedBack.textContent = "Wrong";
@@ -87,9 +87,9 @@ function HighScorer() {
     };
     highScore.push(newScore);
     localStorage.setItem("highscores", JSON.stringify(highScore));
-    window.location.href = "highscores.html"
-  }else{
+    window.location.href = "highscores.html";
+  } else {
     alert("blanks");
   }
 }
-submitBtn.addEventListener("click",HighScorer);
+submitBtn.addEventListener("click", HighScorer);
